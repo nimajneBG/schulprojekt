@@ -1,10 +1,24 @@
+/* Define Variables */
+:root {
+    --text-color: #1F1F1F;
+    --accent-color-bg: #F28F3B;
+    --accent-color-text: #BF4D36;
+    --link-color: #588B8B;
+    --nav-text-color: #f1e1d9;
+    --nav-active-text-color: #FFF;
+}
+
+/* Reset browser defaults */
 * {
     margin: 0;
     padding: 0;
     font-family: 'Noto Serif', serif;
-    color: #1F1F1F;
+    color: var(--text-color);
     font-size: 18px;
 }
+
+/* Only showing Alpine js components after they are loaded */
+[x-cloak] { display: none !important; }
 
 main {
     box-sizing: border-box;
@@ -14,7 +28,7 @@ div.sidebar {
     width: 280px;
     box-sizing: border-box;
     padding: 20px;
-    background-color: #F28F3B;
+    background-color: var(--accent-color-bg);
     text-align: center;
     position: fixed;
     top: 0;
@@ -30,87 +44,88 @@ section {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Noto Sans', sans-serif;
-    color: #BF4D36;
+    color: var(--accent-color-text);
     margin-bottom: 10px;
     font-weight: 300;
 }
-h1 {
-    color: #FFF1EB;
-    font-size: 38px;
-}
-h2 {
-    font-size: 32px;
-}
-nav {
-    margin-top: 25px;
-}
+h1 { font-size: 38px; }
+
+h2 { font-size: 32px; }
+
+nav { margin-top: 25px; }
+
+a.nav-link { color: var(--nav-text-color); }
+
 a.nav-link {
     display: block;
     padding: 10px;
     font-size: 20px;
-    color: #FFF1EB;
     text-decoration: none;
 }
-a.nav-link:hover {
-    text-decoration: underline #FFF1EB;
-}
 
-article {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-article p {
-    margin-bottom: 10px;
-}
+a.nav-link.active, .sidebar h1 { color: #fff; }
+
+a.nav-link:hover { text-decoration: underline var(--nav-text-color); }
+
+article { margin: 15px 0; }
+
+article p { margin-bottom: 10px; }
 
 hr {
     border: 0;
     height: 1px;
     background: #333;
     background-image: linear-gradient(to right, #ccc, #333, #ccc);
+    margin: 25px 0;
+    box-sizing: border-box;
 }
-a.link {
-    color: #588B8B;
+
+a { color: var(--link-color); }
+
+.leaflet-control-attribution a { font-size: 11px; }
+
+#map { 
+    height: 500px; 
+    min-width: 50%;
+    max-width: 70%;
+    flex-grow: 1;
 }
-#map {
-    width: 100%;
-    height: 550px;
-}
-ul {
-    padding-left: 20px;
-}
-p.big-letter::first-letter {
-    font-size: 32px;
-    color: #BF4D36;
-    vertical-align: sub;
-}
+
+ul { padding-left: 20px; }
+
 strong {
-    color: #BF4D36;
+    color: var(--accent-color-text);
     font-family: 'Noto Sans', sans-serif;
 }
 footer {
-    margin: 0 10px;
+    margin: 0;
     padding: 10px 10px 20px 10px;
-    border-top: solid 1px #1f1f1f;
-}
-#x {
-    background-color: #fff;
+    border-top: solid 1px var(--text-color);
 }
 
-.map-info {
-    display: none;
-    margin-bottom: 15px;
-    padding: 10px;
-    border-radius: 5px;
-    box-sizing: border-box;
-    box-shadow: 4px 4px 10px 2px #ccc;
+.map-container {
+    display: flex;
+    gap: 15px;
 }
 
-.active {
-    display: block;
+.tabs {
+    min-width: 410px;
+    max-width: 30%;
 }
 
+.active { display: block; }
 
+
+/* Responsive desing */
+
+/* Big screens (Full screen PC & Laptop window, TV etc. */
+@media screen and (min-width: 600px) {
+    
+}
+
+/* Medium Screen */
+
+/* Small Screen (Phone, small widow etc.) */
 @media screen and (max-width: 500px) {
     .sidebar {display: none;}
     section {

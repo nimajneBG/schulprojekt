@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="de">
 
+<!-- 
+  -  TODO: Texte der Karte überarbeiten
+
+  -  TODO: Über diese Seite überarbeiten und neue Infos hinzufügen
+ -->
+
 <head>
 
     <!--Meta-->
@@ -9,14 +15,25 @@
     <meta name="description" content="Die Seite für mein Projekt zu Kolonialismus und Imperialismus">
     <title>Kolonialismus & Imperialismus</title>
 
-    <!--Schriftarten Stylesheets & Scripte-->
+    <!-- Include the fonts used and the stylesheet of Leaflet JS (used for the map) -->
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="">
+
+    <!-- Custom styles -->
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="https://www.openlayers.org/api/OpenLayers.js"></script>
-    <script type="text/javascript" src="https://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
-    <script src="main.js"></script>
+
+    <!-- Custom script -->
+    <script defer src="main.js"></script>
+
+    <!-- Include Alpine JS and the JS part of Leaflet JS -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
 
 </head>
 
@@ -24,19 +41,82 @@
 
     <!--Hauptteil der Seite-->
     <main>
-        <div class="sidebar">
+        <div class="sidebar" x-data="nav" @scroll.window.throttle="handleScroll">
             <div class="sidebar-content">
                 <h1>Kolonialismus & Imperialismus</h1>
                 <nav>
-                    <a href="#article1" class="nav-link">Was ist Kolonialismus</a>
-                    <a href="#article2" class="nav-link">Was ist Imperialismus</a>
-                    <a href="#article3" class="nav-link">Was sind die Unterschiede</a>
-                    <a href="#article4" class="nav-link">Wie unterscheide sich die Kolonien</a>
-                    <a href="#article5" class="nav-link">Deutsche Kolonien</a>
-                    <a href="#article6" class="nav-link">Interaktive Karte</a>
-                    <a href="#article7" class="nav-link">Kolonien heute</a>
-                    <a href="#article8" class="nav-link">Quellen</a>
-                    <a href="#article9" class="nav-link">Über diese Seite</a>
+                    <a 
+                        href="#article1" 
+                        @click=" $nextTick(() => visibleHeadingId = 'article1') "
+                        class="nav-link" 
+                        :class="visibleHeadingId == 'article1' && 'active'"
+                    >
+                        Was ist Kolonialismus
+                    </a>
+                    <a 
+                        href="#article2"
+                        @click=" $nextTick(() => visibleHeadingId = 'article2') "
+                        class="nav-link"
+                        :class="visibleHeadingId == 'article2' && 'active'"
+                    >
+                        Was ist Imperialismus
+                    </a>
+                    <a 
+                        href="#article3"
+                        @click=" $nextTick(() => visibleHeadingId = 'article3') "
+                        class="nav-link"
+                        :class="visibleHeadingId == 'article3' && 'active'"
+                    >
+                        Was sind die Unterschiede
+                    </a>
+                    <a 
+                        href="#article4"
+                        @click=" $nextTick(() => visibleHeadingId = 'article4') "
+                        class="nav-link"
+                        :class="visibleHeadingId == 'article4' && 'active'"
+                    >
+                        Wie unterscheide sich die Kolonien
+                    </a>
+                    <a 
+                        href="#article5"
+                        @click=" $nextTick(() => visibleHeadingId = 'article5') "
+                        class="nav-link"
+                        :class="visibleHeadingId == 'article5' && 'active'"
+                    >
+                        Deutsche Kolonien
+                    </a>
+                    <a 
+                        href="#article6"
+                        @click=" $nextTick(() => visibleHeadingId = 'article6') "
+                        class="nav-link"
+                        :class="visibleHeadingId == 'article6' && 'active'"
+                    >
+                        Interaktive Karte
+                    </a>
+                    <a 
+                        href="#article7"
+                        @click=" $nextTick(() => visibleHeadingId = 'article7') "
+                        class="nav-link"
+                        :class="visibleHeadingId == 'article7' && 'active'"
+                    >
+                        Kolonien heute
+                    </a>
+                    <a 
+                        href="#article8"
+                        @click=" $nextTick(() => visibleHeadingId = 'article8') "
+                        class="nav-link"
+                        :class="visibleHeadingId == 'article8' && 'active'"
+                    >
+                        Quellen
+                    </a>
+                    <a 
+                        href="#article9"
+                        @click=" $nextTick(() => visibleHeadingId = 'article9') "
+                        class="nav-link"
+                        :class="visibleHeadingId == 'article9' && 'active'"
+                    >
+                        Über diese Seite
+                    </a>
                 </nav>
             </div>
         </div>
@@ -55,11 +135,10 @@
             </noscript>
 
 
-
             <!--Texte-->
             <article id="article1">
                 <h2>Was ist Kolonialismus</h2>
-                <p class="big-letter">Als Kolonialismus wird das Einnehmen beziehungsweise Erobern und dann Ausbeuten
+                <p>Als Kolonialismus wird das Einnehmen beziehungsweise Erobern und dann Ausbeuten
                     von Kolonien, also Ländern beziehungsweise Gebieten in Übersee bezeichnet.</p>
                 <p>Die Zeit des Kolonialismus ging vom 16. bis zum Anfang des 20. Jahrhunderts.</p>
                 <p>Der Kolonialismus der Europäer baute darauf, dass sie sich als anderen Völkern überlegen sahen und
@@ -84,7 +163,7 @@
 
             <article id="article2">
                 <h2>Was ist Imperialismus</h2>
-                <p class="big-letter">Imperialismus ist das Streben nach Macht und Vergrößerung. Dabei wurden andere
+                <p>Imperialismus ist das Streben nach Macht und Vergrößerung. Dabei wurden andere
                     Länder, häufig direkt an das Ursprungsland angrenzende, eingenommen um die eigene Macht zu
                     vergrößern. Jeder Staat wollte damals das größte Reich haben.</p>
                 <p>Ein sehr frühes Beispiel für Imperialismus ist das Römische Reich, das durch die weitläufigen
@@ -95,7 +174,7 @@
 
             <article id="article3">
                 <h2>Was sind die Unterschiede</h2>
-                <p class="big-letter">Es ist schwierig eine exakte Unterscheidung zwischen Kolonialismus und
+                <p>Es ist schwierig eine exakte Unterscheidung zwischen Kolonialismus und
                     Imperialismus zu ziehen. Es kann auch sein, dass es sich von dem einen ins andere entwickelt.</p>
                 <p>Der Hauptunterschied ist aber, dass es beim Kolonialismus auch um die Ausbeutung von Menschen und
                     Ressourcen ging und beim Imperialismus vorrangig um die Erweiterung eines Reiches.</p>
@@ -105,7 +184,7 @@
 
             <article id="article4">
                 <h2>Wie unterscheide sich die Kolonien</h2>
-                <p class="big-letter">Jede Kolonie hat ihre eigene Geschichte und alle sind unterschiedlich. Allerdings
+                <p>Jede Kolonie hat ihre eigene Geschichte und alle sind unterschiedlich. Allerdings
                     lassen sie sich nach dem Ziel, das die Kolonisten (Europäer) verfolgt haben, in Kategorien
                     einteilen.</p>
                 <ul>
@@ -153,7 +232,7 @@
 
             <article id="article5">
                 <h2>Deutsche Kolonien</h2>
-                <p class="big-letter">Deutschland hatte auch Kolonien und war auch schon immer in am europäischen
+                <p>Deutschland hatte auch Kolonien und war auch schon immer in am europäischen
                     Kolonialismus beteiligt, auch wenn es erst relativ spät Kolonien des Deutschen Reichs gab.
                 </p>
                 <p>Vor den Kolonien des Deutschen Reichs gab es schon Kolonien der Kurfürsten, zum Beispiel hatte der
@@ -179,21 +258,125 @@
 
             <hr>
 
-            <article id="article6">
+            <article id="article6" x-data="map" x-title="InteractiveMap" x-cloak>
                 <h2>Interaktive Karte</h2>
                 <p>Eine Karte mit verschieden exemplarischen oder besonderen und alle Deutschen Kolonien eingezeichnet.
                 </p>
+                <noscript>
+                    <p>
+
+                    </p>
+                </noscript>
                 <div class="map-container">
-                    <div class="map">
-                        <div id="map"></div>
-                        <p><i>© OpenStreetMap contributors</i></p>
-                    </div>
-                    <div class="map-info" id="map-info">
-                        <h3 id="title-info">Hier ist etwas schief gelaufen 😑</h3>
-                        <div id="desc"></div>
+                    <div id="map"></div>
+                    <div class="tabs">
+                        <div class="tab" x-show="currentTab === 'usa'">
+                            <h3>Vereinigte Staaten von Amerika (USA)</h3>
+                            <div>
+                                <p>Der Teil von Nordamerika, der heute als USA bekannt ist, war eine der frühen
+                                    Britischen (Siedlungs-)Kolonien.</p>
+                                <p>Weil der Seeweg sehr lange gedauert hat, waren die USA auch als Kolonie schon relativ
+                                    unabhängig, sie wollten aber richtig unabhängig sein und es gab den
+                                    Unabhängigkeitskrieg, den die USA mit Hilfe von Frankreich gewannen und so eine der
+                                    ersten Kolonien waren, die unabhängig wurde.</p>
+                                <p>Die Ureinwohner wurden aber von den Siedler stark bekämpft und es wurden sehr viele
+                                    getötet. Außerdem wurden viele afrikanische Sklaven in die USA geliefert um dort auf
+                                    Plantagen zu arbeiten.</p>
+                            </div>
+                        </div>
+                        <div class="tab" x-show="currentTab === 'australien'">
+                            <h3>Australien</h3>
+                            <div>
+                                <p>Australien war eine Britische Strafkolonie, in die viele brittische Häftlinge
+                                    gebracht wurden.</p>
+                            </div>
+                        </div>
+                        <div class="tab" x-show="currentTab === 'togo'">
+                            <h3>Togo</h3>
+                            <div>
+                                <p>War eine Deutsche Kolonie, die sehr stark ausgebeutet wurde und die einzige Deutsche
+                                    Kolonie war die mehr eingenommen hat, als sir Kosten verursacht hat.</p>
+                            </div>
+                        </div>
+                        <div class="tab" x-show="currentTab === 'indien'">
+                            <h3>Indien</h3>
+                            <div>
+                                <p>Indien war sowohl eine Britische als auch Niederländische Kolonie. Und ein sehr
+                                    bekanntest Beispiel für Kolonialismus.</p>
+                                <p>Die Briten hatten eine sehr durchdachtes System, bei dem nur sehr wenige und oft
+                                    zahlenmäßig unterlegene Britische Soldaten, die häufig gewechselt wurden, mit
+                                    extremer härte alle Aufstände niederschlugen, auch um abzuschrecken. Außerdem bauten
+                                    die Briten in Inden Opium an, das sie dann nach China verkauften, was zu den
+                                    Opium-Kriegen führte.</p>
+                            </div>
+                        </div>
+                        <div class="tab" x-show="currentTab === 'kanada'">
+                            <h3>Kanada</h3>
+                            <div>
+                                <p>Kanada war Britische und Französische (Siedlungs-)Kolonie, weil beide Länder
+                                    verfeindet waren gab es immer wieder Kämpfe um Kanada.</p>
+                                <p>Kanada ist auch einer der Staaten, die immer noch die Britische Queen als Königinn
+                                    haben.</p>
+                            </div>
+                        </div>
+                        <div class="tab" x-show="currentTab === 'namibia'">
+                            <h3>Deutsch Südwestafrika (Heute Namibia)</h3>
+                            <div>
+                                <p>
+                                    War eine ursprünglich als Siedlungskolonie, aber nie so umgesetzte Deutsche Kolonie.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="tab" x-show="currentTab === 'suedkorea'">
+                            <h3>Südkorea</h3>
+                            <div>
+                                <p>Südkorea war einen Japanische (War die einzige Kolonialmacht außerhalb Europas)
+                                    Kolonie, hat sich aber zu einem der technologisch am weitesten Land entwickelt was
+                                    besonders ist, weil viele andere ehemalige Kolonien auch heute noch wirtschaftliche
+                                    Probleme haben.</p>
+                            </div>
+                        </div>
+                        <div class="tab" x-show="currentTab === 'tansania'">
+                            <h3>Deutsch Ostafrika (Tansania)</h3>
+                            <div>
+                                <p>
+                                    Deutsch Ostafrika war eine Deutsche Beherrschungskolonie.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="tab" x-show="currentTab === 'kamerun'">
+                            <h3>Kamerun</h3>
+                            <div>
+                                <p>
+                                    Kamerun war eine Deutsche Beherrschungskolonie.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="tab" x-show="currentTab === 'samoa'">
+                            <h3>Deutsch Samoa</h3>
+                            <div>
+                                <p>
+                                    Deutsch Samoa war eine Deutsche Beherrschungskolonie.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="tab" x-show="currentTab === 'neuguinea'">
+                            <h3>Deutsch Neuguinea</h3>
+                            <div>
+                                <p>Deutsch Neuguinea war eine Deutsche Beherrschungskolonie.</p>
+                            </div>
+                        </div>
+                        <div class="tab" x-show="currentTab === 'kiautschou'">
+                            <h3>Kiautschou</h3>
+                            <div>
+                                <p>Kiautschou war eine Deutsche Kolonie, die dem Deutschen Reich den Zugang zu China
+                                    ermöglichen sollte. Außerdem war es nicht dem Reichskolonialamt unterstellt sondern
+                                    der Marine.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <p id="x">Ich habe mich dafür entschieden, aus Zeitgründen (ich hatte keine Zeit mich mit jeder Kolonie
+                <p>Ich habe mich dafür entschieden, aus Zeitgründen (ich hatte keine Zeit mich mit jeder Kolonie
                     in z.B.
                     Afrika zu beschäftigen), nur einen <strong>Teil</strong> der Kolonien einzuzeichnen.</p>
             </article>
@@ -202,7 +385,7 @@
 
             <article id="article7">
                 <h2>Kolonien heute</h2>
-                <p class="big-letter">Es gibt zwar heute keine Kolonien mehr, weil auch die letzten nach dem Zweiten
+                <p>Es gibt zwar heute keine Kolonien mehr, weil auch die letzten nach dem Zweiten
                     Weltkrieg unabhängig wurden.</p>
                 <p>Die heutige Situation in den ehemaligen Kolonien ist sehr unterschiedlich. Es gibt Kolonien, wie die
                     USA, die sehr früh unabhängig geworden sind und denen es jetzt sehr gut geht. Große Teile Afrikas,
@@ -249,7 +432,7 @@
 
             <article id="article9">
                 <h2>Über diese Seite</h2>
-                <p class="big-letter">Ich habe diese Seite im Rahmen eines <strong>Schulprojektes</strong> zu
+                <p>Ich habe diese Seite im Rahmen eines <strong>Schulprojektes</strong> zu
                     Kolonialismus und
                     Imperialismus erstellt.</p>
                 <p>Ich habe diese Seite in HTML, CSS und JavaScript, <strong>ohne</strong> Frameworks wie z.B. Angular
@@ -274,11 +457,14 @@
                         href="https://github.com/nimajneBG/schulprojekt"
                         class="link">https://github.com/nimajneBG/schulprojekt</a> heruntergeladen werden.</p>
             </article>
+
+            <footer>
+                &copy; by Benjamin Grau 2020 - 2021
+            </footer>
+
         </section>
+    </main>
 
-
-
-        <script>drawmap();</script>
 </body>
 
 </html>
