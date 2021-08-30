@@ -49,7 +49,6 @@ document.addEventListener('alpine:init', () => {
 
     // Nav sidebar
     Alpine.data('nav', () => ({
-        open: true,
         headings: undefined,
         visibleHeadingId: null,
         init() {
@@ -57,7 +56,6 @@ document.addEventListener('alpine:init', () => {
 
             this.handleScroll()
         },
-        toggleNav() { this.open = !this.open },
         handleScroll() {
             let relativeTop = window.innerHeight / 2
 

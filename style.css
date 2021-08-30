@@ -34,12 +34,12 @@ div.sidebar {
     top: 0;
     left: 0;
     height: 100%;
+    z-index: 1100;
 }
+
 section {
     box-sizing: border-box;
-    max-width: 100%;
     padding: 15px;
-    margin-left: 280px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -63,7 +63,7 @@ a.nav-link {
     text-decoration: none;
 }
 
-a.nav-link.active, .sidebar h1 { color: #fff; }
+a.nav-link.active, .sidebar h1 { color: var(--nav-active-text-color); }
 
 a.nav-link:hover { text-decoration: underline var(--nav-text-color); }
 
@@ -86,8 +86,6 @@ a { color: var(--link-color); }
 
 #map { 
     height: 500px; 
-    min-width: 50%;
-    max-width: 70%;
     flex-grow: 1;
 }
 
@@ -106,29 +104,45 @@ footer {
 .map-container {
     display: flex;
     gap: 15px;
-}
-
-.tabs {
-    min-width: 410px;
-    max-width: 30%;
+    margin-bottom: 20px;
 }
 
 .active { display: block; }
+
+.info {
+    font-weight: lighter;
+    font-style: italic;
+}
 
 
 /* Responsive desing */
 
 /* Big screens (Full screen PC & Laptop window, TV etc. */
-@media screen and (min-width: 600px) {
-    
+@media screen and (min-width: 1200px) {
+    #map {
+        min-width: 50%;
+        max-width: 70%;
+    }
+    .tabs {
+        min-width: 410px;
+        max-width: 30%;
+    }
 }
 
 /* Medium Screen */
+@media screen and (max-width: 1199px) {
+    .map-container { flex-direction: column; }
+    #map, .tabs { width: 100% }
+}
 
-/* Small Screen (Phone, small widow etc.) */
-@media screen and (max-width: 500px) {
-    .sidebar {display: none;}
+@media screen and (min-width: 800px) {
     section {
-        margin-left: 0;
+        max-width: 100%;
+        margin-left: 280px;
     }
+}
+
+/* Don't show the sidebar on small screens */
+@media screen and (max-width: 799px) {
+    .sidebar {display: none;}
 }

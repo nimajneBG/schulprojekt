@@ -41,7 +41,11 @@
 
     <!--Hauptteil der Seite-->
     <main>
-        <div class="sidebar" x-data="nav" @scroll.window.throttle="handleScroll">
+        <div 
+            class="sidebar" 
+            x-data="nav"
+            @scroll.window.throttle="handleScroll"
+        >
             <div class="sidebar-content">
                 <h1>Kolonialismus & Imperialismus</h1>
                 <nav>
@@ -258,16 +262,14 @@
 
             <hr>
 
-            <article id="article6" x-data="map" x-title="InteractiveMap" x-cloak>
+            <article id="article6" x-data="map" x-title="InteractiveMap">
                 <h2>Interaktive Karte</h2>
                 <p>Eine Karte mit verschieden exemplarischen oder besonderen und alle Deutschen Kolonien eingezeichnet.
                 </p>
                 <noscript>
-                    <p>
-
-                    </p>
+                    <p><strong>Für die interaktive Karte muss Java Script aktiviert sein</strong></p>
                 </noscript>
-                <div class="map-container">
+                <div class="map-container" x-cloak>
                     <div id="map"></div>
                     <div class="tabs">
                         <div class="tab" x-show="currentTab === 'usa'">
@@ -376,9 +378,10 @@
                         </div>
                     </div>
                 </div>
-                <p>Ich habe mich dafür entschieden, aus Zeitgründen (ich hatte keine Zeit mich mit jeder Kolonie
-                    in z.B.
-                    Afrika zu beschäftigen), nur einen <strong>Teil</strong> der Kolonien einzuzeichnen.</p>
+
+                <p class="info">Ich habe mich dafür entschieden, aus Zeitgründen (ich hatte keine Zeit mich mit jeder
+                    Kolonie in z.B. Afrika zu beschäftigen), nur einen <strong>Teil</strong> der Kolonien einzuzeichnen.
+                </p>
             </article>
 
             <hr>
@@ -402,29 +405,24 @@
             <article id="article8">
                 <h2>Quellen</h2>
                 <ul>
-                    <li>
-                        <a href="https://www.spektrum.de/lexikon/geographie/kolonialismus/4238"
-                            class="link">https://www.spektrum.de/lexikon/geographie/kolonialismus/4238</a>
-                    </li>
-                    <li>
-                        <a href="https://www.bpb.de/apuz/146973/geschichte-des-europaeischen-und-deutschen-kolonialismus"
+                    <li><a href="https://www.spektrum.de/lexikon/geographie/kolonialismus/4238" target="_blank"
+                            class="link">https://www.spektrum.de/lexikon/geographie/kolonialismus/4238</a></li>
+                    <li><a href="https://www.bpb.de/apuz/146973/geschichte-des-europaeischen-und-deutschen-kolonialismus"
+                            target="_blank"
                             class="link">https://www.bpb.de/apuz/146973/geschichte-des-europaeischen-und-deutschen-kolonialismus</a>
                     </li>
-                    <li>
-                        <a href="https://www.geo.de/wissen/21459-rtkl-bilanz-wie-der-kolonialismus-die-welt-bis-heute-praegt"
+                    <li><a href="https://www.geo.de/wissen/21459-rtkl-bilanz-wie-der-kolonialismus-die-welt-bis-heute-praegt"
+                            target="_blank"
                             class="link">https://www.geo.de/wissen/21459-rtkl-bilanz-wie-der-kolonialismus-die-welt-bis-heute-praegt</a>
                     </li>
-                    <li>
-                        <a href="https://www.welt.de/geschichte/article172647940/Erster-Opiumkrieg-Als-England-weltgroesster-Drogendealer-wurde.html"
+                    <li><a href="https://www.welt.de/geschichte/article172647940/Erster-Opiumkrieg-Als-England-weltgroesster-Drogendealer-wurde.html"
+                            target="_blank"
                             class="link">https://www.welt.de/geschichte/article172647940/Erster-Opiumkrieg-Als-England-weltgroesster-Drogendealer-wurde.html</a>
                     </li>
-                    <li>
-                        <a href="https://esdifferent.com/difference-between-colonialism-and-imperialism"
-                            class="link">https://esdifferent.com/difference-between-colonialism-and-imperialism</a>
-                    </li>
-                    <li>
-                        <a href="https://www.openstreetmap.org/" class="link">OpenStreetMap für Kartendaten</a>
-                    </li>
+                    <li><a href="https://esdifferent.com/difference-between-colonialism-and-imperialism" target="_blank"
+                            class="link">https://esdifferent.com/difference-between-colonialism-and-imperialism</a></li>
+                    <li><a href="https://www.openstreetmap.org/" target="_blank" class="link">OpenStreetMap</a> für
+                        Kartendaten</li>
                 </ul>
             </article>
 
